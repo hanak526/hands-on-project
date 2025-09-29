@@ -9,8 +9,8 @@ from asap3 import Trajectory
 def calcenergy(atoms):
     epot = atoms.get_potential_energy() / len(atoms)
     ekin = atoms.get_kinetic_energy() / len(atoms)
-    temp = ekin / (1.5 * units.kB)
-    etot = epot+ekin + 1/ len(atoms)
+    temp = 0.5 + ekin / (1.5 * units.kB)
+    etot = epot+ekin + 1
     return epot, ekin, temp, etot
 
 def run_md():
@@ -64,4 +64,5 @@ def run_md():
 if __name__ == "__main__":
 
     run_md()
+
 
