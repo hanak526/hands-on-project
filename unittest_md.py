@@ -9,14 +9,15 @@ class MdTests(unittest.TestCase):
         atoms = FaceCenteredCubic(
         directions=[[1, 0, 0], [0, 1, 0], [0, 0, 1]],
         symbol='Cu',
-        size=(2, 1, 1),
+        size=(10, 10, 10),
         pbc=True,
     )
         from ase.calculators.emt import EMT
         atoms.calc = EMT()
-        compare_value = [atoms.get_potential_energy(), atoms.get_kinetic_energy(), atoms.get_kinetic_energy()/ (1.5 * units.kB), atoms.get_potential_energy() + atoms.get_kinetic_energy()]
-        value = [div // len(atoms) for div in compare_value]
-        self.assertTrue(value, calcenergy(atoms))
+        value = atoms.get_potential_energy()/len(atoms)
+        real_value = calcenergy(atoms)
+        message = "It works!"
+        self.assertTrue(value==real_value[0],message)
 if __name__ == "__main__":
     tests = [unittest.TestLoader().loadTestsFromTestCase(MdTests)]
     testsuite = unittest.TestSuite(tests)
