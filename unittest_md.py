@@ -9,11 +9,12 @@ class MdTests(unittest.TestCase):
         atoms = FaceCenteredCubic(
         directions=[[1, 0, 0], [0, 1, 0], [0, 0, 1]],
         symbol='Cu',
-        size=(2, 1, 1),
+        size=(10, 10, 10),
         pbc=True,
     )
         from ase.calculators.emt import EMT
-        atoms.calc = EMT()value = atoms.get_potential_energy()/len(atoms)
+        atoms.calc = EMT()
+        value = atoms.get_potential_energy()/len(atoms)
         real_value = calcenergy(atoms)
         message = "It works!"
         self.assertTrue(value==real_value[0],message)
