@@ -10,7 +10,7 @@ def calcenergy(atoms):
     epot = atoms.get_potential_energy() / len(atoms)
     ekin = atoms.get_kinetic_energy() / len(atoms)
     temp = ekin / (1.5 * units.kB)
-    etot = epot+ekin
+    etot = epot+ekin / len(atoms)
     return epot, ekin, temp, etot
 
 def run_md():
@@ -62,4 +62,5 @@ def run_md():
     dyn.run(200)
 
 if __name__ == "__main__":
+
     run_md()
