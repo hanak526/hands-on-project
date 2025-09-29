@@ -15,10 +15,11 @@ class MdTests(unittest.TestCase):
         from ase.calculators.emt import EMT
         atoms.calc = EMT()
         value = [-0.045452090868632666, 0.0, 0.0, -0.045452090868632666]
-        self.assertTrue(value, calcenergy(atoms))
+        self.assertEqual(value, calcenergy(atoms))
 if __name__ == "__main__":
     tests = [unittest.TestLoader().loadTestsFromTestCase(MdTests)]
     testsuite = unittest.TestSuite(tests)
     result = unittest.TextTestRunner(verbosity=0).run(testsuite)
 
     sys.exit(not result.wasSuccessful())
+
