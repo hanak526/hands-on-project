@@ -16,10 +16,11 @@ class MdTests(unittest.TestCase):
         atoms.calc = EMT()
         value = atoms.get_potential_energy()/len(atoms)
         real_value = calcenergy(atoms)
-        message = "It works!"
+        message = "Something went wrong with the potential energy."
         self.assertTrue(value==real_value[0],message)
 if __name__ == "__main__":
     tests = [unittest.TestLoader().loadTestsFromTestCase(MdTests)]
     testsuite = unittest.TestSuite(tests)
     result = unittest.TextTestRunner(verbosity=0).run(testsuite)
+
     sys.exit(not result.wasSuccessful())
